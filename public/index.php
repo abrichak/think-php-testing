@@ -7,7 +7,8 @@ use App\Controllers\UsersController;
 use Dotenv\Dotenv;
 use FastRoute\RouteCollector;
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$envName = getenv('APP_ENV') === 'testing' ? '.env.testing' : '.env';
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../', $envName);
 $dotenv->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(RouteCollector $r) {

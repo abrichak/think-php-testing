@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\User;
+use App\Services\GroupManagementService;
 use App\Services\UsersService;
 use App\Services\ValidationService;
 
@@ -34,7 +35,7 @@ class UsersController
             $validator = new ValidationService();
 
             if ($validator->validateUser($name, $email)) {
-                $service = new UsersService();
+                $service = new UsersService(new GroupManagementService());
                 $service->createUser($name, $email);
 
                 header('Location: /users');
