@@ -34,7 +34,7 @@
 
 <form action="/users" method="post">
     <input name="name" placeholder="Name" type="text">
-    <input name="email" placeholder="Email" type="email">
+    <input name="email" placeholder="Email" type="text">
     <input type="submit" name="submit">
 </form>
 </body>

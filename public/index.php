@@ -31,7 +31,7 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        // ... 404 Not Found
+        echo "Not found";
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
@@ -40,8 +40,7 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $handler = explode('@', $routeInfo[1]);
         $vars = array_merge($routeInfo[2], $_POST);
-        $controllerName = $handler[0];
-        $actionName = $handler[1];
+        [$controllerName, $actionName] = $handler;
 
         $controller = new $controllerName;
         $controller->$actionName($vars);

@@ -2,21 +2,22 @@
 
 namespace App\Helper;
 
+use ParagonIE\EasyDB\EasyDB;
 use ParagonIE\EasyDB\Factory;
 
 class DB
 {
-    private static $db;
+    private static ?EasyDB $db = null;
 
-    public static function connection()
+    public static function connection(): EasyDB
     {
-        $connection = getenv('DB_CONNECTION');
-        $host = getenv('DB_HOST');
-        $database = getenv('DB_DATABASE');
-        $user = getenv('DB_USERNAME');
-        $password = getenv('DB_PASSWORD');
-
         if (!self::$db) {
+            $connection = $_ENV['DB_CONNECTION'];
+            $host = $_ENV['DB_HOST'];
+            $database = $_ENV['DB_DATABASE'];
+            $user = $_ENV['DB_USERNAME'];
+            $password = $_ENV['DB_PASSWORD'];
+
             self::$db = Factory::fromArray([
                 sprintf('%s:host=%s;dbname=%s', $connection, $host, $database),
                 $user,
@@ -27,4 +28,3 @@ class DB
         return self::$db;
     }
 }
-

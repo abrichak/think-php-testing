@@ -11,7 +11,7 @@ class User
         return DB::connection()->run('SELECT * FROM users ORDER BY id');
     }
 
-    public static function create(array $params)
+    public static function create(array $params): void
     {
         DB::connection()->insert('users', [
             'name'  => $params['name'],

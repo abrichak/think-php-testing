@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\User;
-use App\Services\GroupManagementService;
 use App\Services\UsersService;
 use App\Services\ValidationService;
 
